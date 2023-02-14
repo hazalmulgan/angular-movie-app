@@ -17,11 +17,23 @@
               </form>
               <div class="message">
               <div class="message__detail">{{message}}</div>
-              <div class="message__detail-count">{{searchCount}}</div>
             </div>
             </div>
           </div>
         </div>
+      </div>
+      <div *ngIf="showFilter" class="filter">
+               
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>Tür</mat-label>
+            <mat-select (selectionChange)="onTypeChanged($event)">
+              <mat-option value="movie">Film</mat-option>
+              <mat-option value="series">Dizi</mat-option>
+              <mat-option value="episode">Bölüm</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
       </div>
       <div *ngIf="isReady">
         <div class="movie-table">
@@ -30,11 +42,16 @@
             <button mat-raised-button color="warn" class="delete-button" value="delete" (click)="openConfirmDialog(movie)">
               <mat-icon>delete</mat-icon>
               Sil
-          </button>        
-            <img mat-card-image src="{{movie.Poster}}" class="link" (click)="gotoDetails(movie)">
+          </button>  
+          <div [ngSwitch]="movie.Poster === 'N/A' || movie.Poster !== 'N/A'" class="link" (click)="gotoDetails(movie)">
+            <img mat-card-imag *ngSwitchCase="movie.Poster !== 'N/A'" src="{{movie.Poster}}" height="300">
+            <img mat-card-imag *ngSwitchCase="movie.Poster === 'N/A'"
+              src="/assets/images/image-not-found.png" height="300" width="220">
+          </div>      
             <mat-card-content>
               <div class="movie-table__title">{{movie.Title}}</div>
-              <div>{{movie.Year}}</div>
+              <div>{{movie.Year}} ({{movie.Type}})</div>
+              
             </mat-card-content>
             </mat-card>
           </div>

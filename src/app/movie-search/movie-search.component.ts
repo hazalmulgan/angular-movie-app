@@ -20,9 +20,11 @@ export class MovieSearchComponent implements OnInit {
   movieList: any[] = [];
   formControl = new FormControl();
   value: any;
-  searchCount: any;
   message = '';
   isReady = true;
+  type = '';
+  showFilter = false;
+
 
   dialogRef: MatDialogRef<DialogComponent> | any;
   
@@ -44,7 +46,7 @@ export class MovieSearchComponent implements OnInit {
   }
 
   getMovieList() {
-    this.appService.getMovies(this.value).subscribe((data: any) => {
+    this.appService.getMovies(this.value, this.type).subscribe((data: any) => {
       if (data.Response !== 'False') {
         const items = [];
         for (const key in data) {
@@ -52,17 +54,22 @@ export class MovieSearchComponent implements OnInit {
             items.push(data[key]);
           }
         }
-        this.message = `${this.value.toUpperCase()} için Sonuçlar` 
-        this.searchCount = `${data.Search.length} film bulundu` 
+        this.message = `${this.value.toUpperCase()} için sonuçlar : Toplam ${data.totalResults} sonuç bulundu, ${data.Search.length} tanesi gösteriliyor.`  
         this.movieList = items[0];
+        this.movieList.sort(( a, b ) => a.Year > b.Year ? 1 : -1 )
         this.isReady = true;
+        this.showFilter = true;
       } else {
         this.isReady = true;
         this.movieList.length = 0;
         if (this.value === '') {
           this.message = `Lütfen arama kriteri giriniz.`;
+          this.showFilter = false;
+          this.type = ''
         } else {
           this.message = `${this.value} aramanıza ilişkin sonuç bulunamadı.`;
+          this.showFilter = false;
+          this.type = ''
         }
       }
     })
@@ -72,7 +79,7 @@ export class MovieSearchComponent implements OnInit {
     try {
       const history = JSON.parse(localStorage.getItem(this.key) as string)
       if (history.length > 0) {
-        this.message = `Aradığınız son filmler listeleniyor.`;
+        this.message = `İncelediğiniz son filmler listeleniyor.`;
         this.movieList = history;
       }
     } catch (e) {
@@ -96,6 +103,10 @@ export class MovieSearchComponent implements OnInit {
     this.router.navigate(['/detail', data.imdbID]);
   }
 
+  onTypeChanged(event: any){
+    this.type = event.value
+    this.getMovieList()
+  }
   
   openConfirmDialog(selected: any){
     if(selected.Title){

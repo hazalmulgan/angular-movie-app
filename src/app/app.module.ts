@@ -12,6 +12,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DialogComponent } from './utils/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +46,8 @@ import { AppService } from './app.service';
     MatToolbarModule,
     MatDividerModule,
     MatButtonToggleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   entryComponents: [DialogComponent],
   providers: [AppService],

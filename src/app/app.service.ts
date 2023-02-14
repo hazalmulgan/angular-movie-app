@@ -7,14 +7,15 @@ import { HttpClient } from '@angular/common/http';
 export class AppService {
 
   readonly apikey = 'bfd1f6f3';
-  readonly api = `https://www.omdbapi.com/?apikey=${this.apikey}&type=movie&r=json`;
+  readonly api = `https://www.omdbapi.com/?apikey=${this.apikey}&r=json`;
 
   constructor(private http: HttpClient) { }
 
-  getMovies(titleValue: any) {
-    return this.http.get(`${this.api}&s=${titleValue}*`);
+  getMovies(titleValue: any, type?: any) {
+    console.log('tip', type)
+    return this.http.get(`${this.api}&s=${titleValue}&type=${type}`);
   }
-  getMovieDetails(value: any) {
-    return this.http.get(`${this.api}&i=${value}`);
+  getMovieDetails(id: any) {
+    return this.http.get(`${this.api}&i=${id}`);
   }
 }

@@ -3,7 +3,11 @@
     display: flex;
   justify-content: center;
   }
-  
+  .filter{
+    display: flex;
+  justify-content: center;
+ 
+  }
   .search-input {
     width: 520px;
   }
@@ -27,9 +31,6 @@
     justify-content: center;
   }
 
-  .mat-divider {
-    border-top-color: #abb3e2;
-}
 .link{
   cursor: pointer;
 }
@@ -45,9 +46,6 @@
     margin-bottom: 10px;
     font-size: 16px;
     &__detail{
-      color: $primary-light;
-    }
-    &__detail-count{
-      color: #747474;
+      color: $font-color;
     }
 }
