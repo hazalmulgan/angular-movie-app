@@ -1,0 +1,53 @@
+@import "src/variables.scss";
+.search-box {
+    display: flex;
+  justify-content: center;
+  }
+  
+  .search-input {
+    width: 520px;
+  }
+  
+  .movie-table{
+    color: $font-color;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 10px;
+    &__title{
+        font-size: 16px;
+        margin: 10px 0;
+    }
+  }
+
+  .button-actions{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mat-divider {
+    border-top-color: #abb3e2;
+}
+.link{
+  cursor: pointer;
+}
+
+.delete-button{
+  position: absolute;
+  z-index: 9;
+  display: flex;
+}
+.message{
+  display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+    &__detail{
+      color: $primary-light;
+    }
+    &__detail-count{
+      color: #747474;
+    }
+}

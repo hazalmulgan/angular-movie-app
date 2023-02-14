@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+      <div class="ml-auto mr-auto">
+        <mat-card>
+          <table>
+            <tr>
+              <td>
+                <div [ngSwitch]="data?.Poster === 'N/A' || data?.Poster !== 'N/A'">
+                  <img mat-card-imag class="img-responsive" *ngSwitchCase="data?.Poster !== 'N/A'"
+                    src="{{data?.Poster}}">
+                  <img mat-card-imag class="img-responsive" *ngSwitchCase="data?.Poster === 'N/A'"
+                    src="https://placeimg.com/300/415/any">
+                </div>
+              </td>
+              <td>
+                <mat-card-header>
+                  <mat-card-title class="movie-detail">{{ data?.Title }} ({{ data?.Year }})</mat-card-title>
+                  <mat-card-subtitle class="movie-detail">
+                    <div class="movie-detail__rating" *ngIf="data?.imdbRating && data?.imdbRating !== 'N/A'">
+                      <mat-icon class="star-icon">star</mat-icon>
+                      <span>{{ data?.imdbRating }} </span> / 10
+                    </div>
+                    <div *ngIf="data?.Language && data?.Language !== 'N/A'"> <strong>Dil: </strong>{{ data?.Language }}</div>
+                    <div *ngIf="data?.Actors && data?.Actors !== 'N/A'">
+                      <strong>Oyuncular: </strong>
+                      {{ data?.Actors }}
+                    </div>
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="movie-detail">   
+                    <div *ngIf="data?.Plot && data?.Plot !== 'N/A'">
+                      <p>{{ data?.Plot }}</p>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+  </div>

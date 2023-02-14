@@ -1,0 +1,13 @@
+<h1>
+    <div class="mat-dialog-title">{{title}}</div>
+  </h1>
+  <div mat-dialog-content>
+      <div>   
+        <p>{{message}}</p>
+      </div>
+  </div>
+  <div mat-dialog-actions class="mat-dialog-actions">
+      <button mat-raised-button color="primary" (click)="dialogRef.close(true)" *ngIf="isConfirm">Evet</button>
+      <button mat-raised-button color="warn" (click)="dialogRef.close(false)" *ngIf="isConfirm">Vazgeç</button>
+      <button mat-raised-button color="primary" *ngIf="!isConfirm" (click)="dialogRef.close()">Tamam</button>
+  </div>

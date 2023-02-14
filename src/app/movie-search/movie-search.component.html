@@ -1,0 +1,43 @@
+<div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="search-box">
+            <div class="container">
+              <div class="button-actions">
+                <button mat-raised-button color="primary">
+                  <mat-icon>add</mat-icon>
+                  Film Ekle
+                </button>
+              </div>
+              <form>
+                <mat-form-field appearance="outline" class="search-input">
+                  <input matInput placeholder="Film Ara" [formControl]="formControl" type="text" autocomplete="off" autofocus>
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </form>
+              <div class="message">
+              <div class="message__detail">{{message}}</div>
+              <div class="message__detail-count">{{searchCount}}</div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isReady">
+        <div class="movie-table">
+          <div *ngFor="let movie of movieList">
+          <mat-card>
+            <button mat-raised-button color="warn" class="delete-button" value="delete" (click)="openConfirmDialog(movie)">
+              <mat-icon>delete</mat-icon>
+              Sil
+          </button>        
+            <img mat-card-image src="{{movie.Poster}}" class="link" (click)="gotoDetails(movie)">
+            <mat-card-content>
+              <div class="movie-table__title">{{movie.Title}}</div>
+              <div>{{movie.Year}}</div>
+            </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
