@@ -32,16 +32,15 @@
   <div *ngIf="isReady">
     <div class="movie-table">
       <div *ngFor="let movie of movieList">
-        <mat-card>
+        <mat-card class="movie-poster">
           <button mat-raised-button color="warn" class="delete-button" value="delete"
             (click)="openConfirmDialog(movie)">
             <mat-icon>delete</mat-icon>
             Sil
           </button>
-          <div [ngSwitch]="movie.Poster === 'N/A' || movie.Poster !== 'N/A'" class="link" (click)="gotoDetails(movie)">
-            <img mat-card-imag *ngSwitchCase="movie.Poster !== 'N/A'" src="{{movie.Poster}}" height="300">
-            <img mat-card-imag *ngSwitchCase="movie.Poster === 'N/A'" src="/assets/images/image-not-found.png"
-              height="300" width="220">
+          <div [ngSwitch]="movie.Poster === 'N/A' || movie.Poster !== 'N/A'" (click)="gotoDetails(movie)">
+            <img mat-card-image *ngSwitchCase="movie.Poster !== 'N/A'" src="{{movie.Poster}}">
+            <img mat-card-image *ngSwitchCase="movie.Poster === 'N/A'" src="/assets/images/image-not-found.png">
           </div>
           <mat-card-content>
             <div class="movie-table__title">{{movie.Title}}</div>

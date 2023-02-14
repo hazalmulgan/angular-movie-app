@@ -1,17 +1,15 @@
 @import "src/variables.scss";
+
 td {
   vertical-align: top;
   padding: 12px;
 }
-
 .mat-card {
   padding: 24px;
 }
-
 .star-icon {
-  color: #3f51b5;
+  color: $primary;
 }
-
 .movie-detail {
   color: $font-color !important;
   padding: 20px 0;
@@ -21,7 +19,7 @@ td {
     span {
       font-size: 20px;
       margin: 0 5px;
-      color: #3f51b5;
+      color: $primary;
     }
   }
 }
