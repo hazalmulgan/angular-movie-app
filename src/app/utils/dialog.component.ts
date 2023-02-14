@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -15,4 +15,5 @@ export class DialogComponent {
 
   public error: string | undefined;
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>) { }}
+  constructor(public dialogRef: MatDialogRef<DialogComponent>) { }
+}

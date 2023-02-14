@@ -30,7 +30,7 @@ export class MovieSearchComponent implements OnInit {
   constructor(private router: Router, private appService: AppService, public dialog: MatDialog, ) { }
 
   ngOnInit() {
-    this.showHistory();
+    this.showFromHistory();
 
     this.formControl.valueChanges
       .pipe(debounceTime(200))
@@ -53,14 +53,14 @@ export class MovieSearchComponent implements OnInit {
         }
         this.message = `${this.value.toUpperCase()} için sonuçlar : Toplam ${data.totalResults} sonuç bulundu, ${data.Search.length} tanesi gösteriliyor.`
         this.movieList = items[0];
-        this.movieList.sort((a, b) => a.Year > b.Year ? 1 : -1)
+        this.movieList.sort((a, b) => a.Year > b.Year ? -1 : 1)
         this.isReady = true;
         this.showFilter = true;
       } else {
         this.isReady = true;
         this.movieList.length = 0;
         if (this.value === '') {
-          this.message = `Lütfen arama kriteri giriniz.`;
+          this.message = 'Lütfen arama kriteri giriniz.';
           this.showFilter = false;
           this.type = ''
         } else {
@@ -72,11 +72,11 @@ export class MovieSearchComponent implements OnInit {
     })
   }
 
-  showHistory() {
+  showFromHistory() {
     try {
       const history = JSON.parse(localStorage.getItem(this.key) as string)
       if (history.length > 0) {
-        this.message = `İncelediğiniz son filmler listeleniyor.`;
+        this.message = 'İncelediğiniz son filmler listeleniyor.';
         this.movieList = history;
       }
     } catch (e) {
@@ -126,6 +126,6 @@ export class MovieSearchComponent implements OnInit {
 
   deleteMovie(selected: any) {
     alert(`${selected.Title} filmi silindi`)
-    //elimde omdb ye ait bir delete api si bulunmadığından alert gönderdim.
+    //Omdb ye ait bir delete api si bulunmadığından, elimde bilgileri olan seçili filmin silinmesi ile ilgili alert gönderdim. 
   }
 }
