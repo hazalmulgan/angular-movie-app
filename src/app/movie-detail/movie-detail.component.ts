@@ -23,7 +23,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   getMoveDetail() {
-    this.appService.getMovieDetails(this.imdbID).subscribe((data:any) => {
+    this.appService.getMovieDetails(this.imdbID).subscribe((data: any) => {
       this.data = data;
     })
   }

@@ -1,51 +1,44 @@
 @import "src/variables.scss";
 .search-box {
-    display: flex;
+  display: flex;
   justify-content: center;
-  }
-  .filter{
-    display: flex;
+}
+.filter {
+  display: flex;
   justify-content: center;
- 
-  }
-  .search-input {
-    width: 520px;
-  }
-  
-  .movie-table{
-    color: $font-color;
-    display: flex;
-    flex-flow: row wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-top: 10px;
-    &__title{
-        font-size: 16px;
-        margin: 10px 0;
-    }
-  }
+}
+.search-input {
+  width: 520px;
+}
 
-  .button-actions{
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
+.movie-table {
+  color: $font-color;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 10px;
+  &__title {
+    font-size: 16px;
+    margin: 10px 0;
   }
+}
 
-.link{
+.link {
   cursor: pointer;
 }
 
-.delete-button{
+.delete-button {
   position: absolute;
   z-index: 9;
   display: flex;
 }
-.message{
+.message {
   display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 16px;
-    &__detail{
-      color: $font-color;
-    }
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+  &__detail {
+    color: $font-color;
+  }
 }

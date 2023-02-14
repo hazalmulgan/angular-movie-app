@@ -25,11 +25,9 @@ export class MovieSearchComponent implements OnInit {
   type = '';
   showFilter = false;
 
-
   dialogRef: MatDialogRef<DialogComponent> | any;
-  
 
-  constructor(private router: Router, private appService: AppService,  public dialog: MatDialog,) { }
+  constructor(private router: Router, private appService: AppService, public dialog: MatDialog, ) { }
 
   ngOnInit() {
     this.showHistory();
@@ -39,7 +37,6 @@ export class MovieSearchComponent implements OnInit {
       .subscribe((newValue: any) => {
         this.isReady = false;
         this.value = newValue;
-
         this.getMovieList();
       }
       );
@@ -54,9 +51,9 @@ export class MovieSearchComponent implements OnInit {
             items.push(data[key]);
           }
         }
-        this.message = `${this.value.toUpperCase()} için sonuçlar : Toplam ${data.totalResults} sonuç bulundu, ${data.Search.length} tanesi gösteriliyor.`  
+        this.message = `${this.value.toUpperCase()} için sonuçlar : Toplam ${data.totalResults} sonuç bulundu, ${data.Search.length} tanesi gösteriliyor.`
         this.movieList = items[0];
-        this.movieList.sort(( a, b ) => a.Year > b.Year ? 1 : -1 )
+        this.movieList.sort((a, b) => a.Year > b.Year ? 1 : -1)
         this.isReady = true;
         this.showFilter = true;
       } else {
@@ -87,7 +84,7 @@ export class MovieSearchComponent implements OnInit {
     }
   }
 
-  gotoDetails(data:any) {
+  gotoDetails(data: any) {
     try {
       let history = JSON.parse(localStorage.getItem(this.key) as string)
       history.splice(0, 0, data);
@@ -103,36 +100,32 @@ export class MovieSearchComponent implements OnInit {
     this.router.navigate(['/detail', data.imdbID]);
   }
 
-  onTypeChanged(event: any){
+  onTypeChanged(event: any) {
     this.type = event.value
     this.getMovieList()
   }
-  
-  openConfirmDialog(selected: any){
-    if(selected.Title){
-        this.dialogRef = this.dialog.open(DialogComponent, {
-            disableClose: false,
-        });
 
-        this.dialogRef.componentInstance.isConfirm = true;
-        this.dialogRef.componentInstance.title = "Filmi Sil";
-        this.dialogRef.componentInstance.message = selected.Title + " adlı filmi silmek istediğinize emin misiniz?";
-    
-        this.dialogRef.afterClosed().subscribe((result:any) => {
-            if(result){
-              this.deleteMovie(selected);
-            }
-            this.dialogRef = null;
-        });
+  openConfirmDialog(selected: any) {
+    if (selected.Title) {
+      this.dialogRef = this.dialog.open(DialogComponent, {
+        disableClose: false,
+      });
+
+      this.dialogRef.componentInstance.isConfirm = true;
+      this.dialogRef.componentInstance.title = "Filmi Sil";
+      this.dialogRef.componentInstance.message = selected.Title + " adlı filmi silmek istediğinize emin misiniz?";
+
+      this.dialogRef.afterClosed().subscribe((result: any) => {
+        if (result) {
+          this.deleteMovie(selected);
+        }
+        this.dialogRef = null;
+      });
     }
-}
+  }
 
-deleteMovie(selected: any){
-  alert(`${selected.Title} filmi silindi`)
-  //omdb apisinde elimde silmeye dair bir api bulunmadığından sadece alert şeklinde bastırabildim.
-  
-}
-
-
-
+  deleteMovie(selected: any) {
+    alert(`${selected.Title} filmi silindi`)
+    //elimde omdb ye ait bir delete api si bulunmadığından alert gönderdim.
+  }
 }

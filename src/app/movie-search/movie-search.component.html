@@ -1,60 +1,54 @@
 <div class="container">
-      <div class="row">
-        <div class="ml-auto mr-auto">
-          <div class="search-box">
-            <div class="container">
-              <div class="button-actions">
-                <button mat-raised-button color="primary">
-                  <mat-icon>add</mat-icon>
-                  Film Ekle
-                </button>
-              </div>
-              <form>
-                <mat-form-field appearance="outline" class="search-input">
-                  <input matInput placeholder="Film Ara" [formControl]="formControl" type="text" autocomplete="off" autofocus>
-                  <mat-icon matSuffix>search</mat-icon>
-                </mat-form-field>
-              </form>
-              <div class="message">
-              <div class="message__detail">{{message}}</div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="showFilter" class="filter">
-               
-        <form>
-          <mat-form-field appearance="outline">
-            <mat-label>Tür</mat-label>
-            <mat-select (selectionChange)="onTypeChanged($event)">
-              <mat-option value="movie">Film</mat-option>
-              <mat-option value="series">Dizi</mat-option>
-              <mat-option value="episode">Bölüm</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </form>
-      </div>
-      <div *ngIf="isReady">
-        <div class="movie-table">
-          <div *ngFor="let movie of movieList">
-          <mat-card>
-            <button mat-raised-button color="warn" class="delete-button" value="delete" (click)="openConfirmDialog(movie)">
-              <mat-icon>delete</mat-icon>
-              Sil
-          </button>  
-          <div [ngSwitch]="movie.Poster === 'N/A' || movie.Poster !== 'N/A'" class="link" (click)="gotoDetails(movie)">
-            <img mat-card-imag *ngSwitchCase="movie.Poster !== 'N/A'" src="{{movie.Poster}}" height="300">
-            <img mat-card-imag *ngSwitchCase="movie.Poster === 'N/A'"
-              src="/assets/images/image-not-found.png" height="300" width="220">
-          </div>      
-            <mat-card-content>
-              <div class="movie-table__title">{{movie.Title}}</div>
-              <div>{{movie.Year}} ({{movie.Type}})</div>
-              
-            </mat-card-content>
-            </mat-card>
+  <div class="row">
+    <div class="ml-auto mr-auto">
+      <div class="search-box">
+        <div class="container">
+          <form>
+            <mat-form-field appearance="outline" class="search-input">
+              <input matInput placeholder="Film Ara" [formControl]="formControl" type="text" autocomplete="off"
+                autofocus>
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </form>
+          <div class="message">
+            <div class="message__detail">{{message}}</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="showFilter" class="filter">
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>Tür</mat-label>
+        <mat-select (selectionChange)="onTypeChanged($event)">
+          <mat-option value="movie">Film</mat-option>
+          <mat-option value="series">Dizi</mat-option>
+          <mat-option value="episode">Bölüm</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div *ngIf="isReady">
+    <div class="movie-table">
+      <div *ngFor="let movie of movieList">
+        <mat-card>
+          <button mat-raised-button color="warn" class="delete-button" value="delete"
+            (click)="openConfirmDialog(movie)">
+            <mat-icon>delete</mat-icon>
+            Sil
+          </button>
+          <div [ngSwitch]="movie.Poster === 'N/A' || movie.Poster !== 'N/A'" class="link" (click)="gotoDetails(movie)">
+            <img mat-card-imag *ngSwitchCase="movie.Poster !== 'N/A'" src="{{movie.Poster}}" height="300">
+            <img mat-card-imag *ngSwitchCase="movie.Poster === 'N/A'" src="/assets/images/image-not-found.png"
+              height="300" width="220">
+          </div>
+          <mat-card-content>
+            <div class="movie-table__title">{{movie.Title}}</div>
+            <div>{{movie.Year}} ({{movie.Type}})</div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
